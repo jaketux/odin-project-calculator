@@ -1,3 +1,11 @@
+body{display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background-color:lightgray
+}
+
+
 .calculator-main{
 display:flex;
 flex-direction:column;
@@ -6,8 +14,8 @@ align-items:center;
 height:550px;
 width:350px;
 background-color:white;
-border:2px solid darkblue;
-border-radius:5px;}
+border:3px solid darkblue;
+border-radius:10px;}
 
 .calculator-screen{
     display:flex;
@@ -27,7 +35,7 @@ border-radius:5px;}
     flex-shrink:1;
     margin-right:5px;}
     
-.button{display:flex;
+.btn{display:flex;
     justify-content:center;
     align-items:center;
     width:75px;

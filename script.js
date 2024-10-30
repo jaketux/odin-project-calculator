@@ -6,14 +6,16 @@ const divideButton = document.querySelector(".divide-btn")
 const equalsButton = document.querySelector(".equals-btn")
 const calculatorScreenText = document.querySelector(".calculator-screen-text")
 const clearButton = document.querySelector(".clear-btn")
-const decimalButton = document.querySelector("decimal-btn")
+const decimalButton = document.querySelector(".decimal-btn")
+const percentageButton = document.querySelector(".percentage-btn")
+const plusMinusButton = document.querySelector(".plusminus-btn")
 
 let enteringFirstNumber=[]
-let numberStored=0
-let firstNumber = 0
-let secondNumber = 0
-let operator = 0
-let outcome = 0
+let numberStored
+let firstNumber
+let secondNumber
+let operator
+let outcome
 
 function operate(operator,firstNumber,secondNumber){
     if (operator=="+"){
@@ -24,7 +26,7 @@ function operate(operator,firstNumber,secondNumber){
             secondNumber = secondNumber.substring(0, 9);
         }
         let total = firstNumber+secondNumber;
-        return outcome=parseFloat(total.toPrecision(3))
+        return outcome=Math.round(total*100) / 100
     }
     else if (operator=="-"){
         if (firstNumber.length > 9) {
@@ -34,7 +36,7 @@ function operate(operator,firstNumber,secondNumber){
             secondNumber = secondNumber.substring(0, 9);
         }
         let total = firstNumber-secondNumber;
-        return outcome=parseFloat(total.toPrecision(3))
+        return outcome=Math.round(total*100) / 100
     }
     else if (operator=="/"){
         if (firstNumber === 0 || secondNumber === 0) {
@@ -47,7 +49,7 @@ function operate(operator,firstNumber,secondNumber){
             secondNumber = secondNumber.substring(0, 9);
         }
         let total = firstNumber/secondNumber;
-        return outcome=parseFloat(total.toPrecision(3))
+        return outcome=Math.round(total*100) / 100
     }
     else if (operator=="*"){
         if (firstNumber.length > 9) {
@@ -57,12 +59,15 @@ function operate(operator,firstNumber,secondNumber){
             secondNumber = secondNumber.substring(0, 9);
         }
         let total = firstNumber*secondNumber;
-        return outcome=parseFloat(total.toPrecision(3))
+        return outcome=Math.round(total*100) / 100
+        
     }
 }
 
 numberButtons.forEach((numberButton)=>{numberButton.addEventListener("click",function(e){
-    if (outcome>0){calculatorScreenText.innerText="";}
+    if (outcome>0){calculatorScreenText.innerText="";
+        outcome=0;
+    }
     enteringFirstNumber.push(this.innerText);
     calculatorScreenText.innerText += numberButton.innerText;
     addButton.classList.remove("operatorinuse")
@@ -192,8 +197,27 @@ equalsButton.addEventListener("click",function(e){
     console.log(outcome)
 })
 
+decimalButton.addEventListener("click",function(e){
+    enteringFirstNumber.push(this.innerText);
+    calculatorScreenText.innerText += decimalButton.innerText;
+    addButton.classList.remove("operatorinuse")
+    subtractButton.classList.remove("operatorinuse")
+    multiplyButton.classList.remove("operatorinuse")
+    divideButton.classList.remove("operatorinuse")
+})
 
+percentageButton.addEventListener("click",function(e){
+    calculatorScreenText.innerText=""
+    outcome=outcome/100
+    calculatorScreenText.innerText += outcome
+    console.log(numberStored)
+    })
 
-
+plusMinusButton.addEventListener("click",function(e){
+    calculatorScreenText.innerText=""
+    outcome=outcome-outcome-outcome
+    calculatorScreenText.innerText += outcome
+    console.log(numberStored)
+    })
 
 

@@ -215,9 +215,12 @@ percentageButton.addEventListener("click",function(e){
 
 plusMinusButton.addEventListener("click",function(e){
     calculatorScreenText.innerText=""
-    outcome=outcome-outcome-outcome
+    if (outcome>0){outcome=outcome-outcome-outcome
+    calculatorScreenText.innerText += outcome
+    console.log(numberStored)}
+    else if (outcome<0){outcome=outcome*-1;
     calculatorScreenText.innerText += outcome
     console.log(numberStored)
-    })
+    }})
 
 
